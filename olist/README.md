@@ -59,3 +59,7 @@ brazilian ecommerce public dataset
 
 --------
 
+# Aula 12/08
+Adicionar csv's com os dados
+Análise do dataset todo
+Criação de ipynb's
