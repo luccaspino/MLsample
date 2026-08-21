@@ -4,7 +4,7 @@ from loguru import logger
 import pandas as pd
 import typer
 
-from module_olist.config import PROCESSED_DATA_DIR
+from module_olist.config import INTERIM_DATA_DIR, PROCESSED_DATA_DIR
 
 app = typer.Typer()
 
@@ -41,7 +41,7 @@ def create_features(data: pd.DataFrame) -> pd.DataFrame:
 
 @app.command()
 def main(
-    input_path: Path = PROCESSED_DATA_DIR / "dataset.csv",
+    input_path: Path = INTERIM_DATA_DIR / "dataset.csv",
     output_path: Path = PROCESSED_DATA_DIR / "features.csv",
 ) -> None:
     """Gera as features temporais a partir da base analítica."""

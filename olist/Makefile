@@ -65,7 +65,7 @@ create_environment:
 ## Make dataset
 .PHONY: data
 data: requirements
-	$(PYTHON_INTERPRETER) module_olist/dataset.py
+	$(PYTHON_INTERPRETER) module_olist/main.py
 
 
 #################################################################################
