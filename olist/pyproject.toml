@@ -18,6 +18,7 @@ classifiers = [
 dependencies = [
     "ipython",
     "jupyterlab",
+    "lightgbm>=4.7.0",
     "loguru",
     "matplotlib",
     "mkdocs",
