@@ -6,6 +6,9 @@ import typer
 from module_olist.config import INTERIM_DATA_DIR, RAW_DATA_DIR
 from module_olist.dataset import create_dataset, load_data, save_dataset
 from module_olist.features import create_features
+from module_olist.modeling.evaluate import evaluate_models
+from module_olist.modeling.split import split_data
+from module_olist.modeling.train import train_models
 
 app = typer.Typer()
 
@@ -27,6 +30,15 @@ def main(
     logger.info("Criando as features temporais...")
     dataset = create_features(dataset)
     save_dataset(dataset, output_path)
+
+    logger.info("Separando os dados em treino e teste...")
+    X_train, X_test, y_train, y_test = split_data(dataset)
+
+    logger.info("Treinando os modelos...")
+    models = train_models(X_train, y_train)
+
+    logger.info("Avaliando os modelos...")
+    evaluate_models(models, X_test, y_test)
 
     logger.success(f"Pipeline concluído: {len(dataset):,} registros salvos em {output_path}")
 

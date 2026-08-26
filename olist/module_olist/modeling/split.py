@@ -15,10 +15,13 @@ FEATURES = [
 
 TARGET = "is_late"
 
+
 def split_data(data: pd.DataFrame):
 
     X = data[FEATURES]
     y = data[TARGET]
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42, stratify=y
+    )
 
     return X_train, X_test, y_train, y_test

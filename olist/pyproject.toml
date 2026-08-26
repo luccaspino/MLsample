@@ -35,6 +35,7 @@ dependencies = [
     "setuptools<80",
     "tqdm",
     "typer",
+    "xgboost>=3.4.1",
     "ydata-profiling",
 ]
 requires-python = "==3.12.13"
