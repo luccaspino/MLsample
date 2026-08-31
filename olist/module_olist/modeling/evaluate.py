@@ -48,7 +48,7 @@ def cross_validate_models(models, x_train, y_train, n_splits=5):
         logger.info(
             f"CV - Model: {name} - Best threshold: {result['threshold']:.2f} - "
             f"F1: {result['f1']:.3f} - Precision: {result['precision']:.3f} - "
-            f"Recall: {result['recall']:.3f} - ROC AUC: {result['roc_auc']:.3f}"
+            f"Recall:  {result['recall']:.3f} - ROC AUC: {result['roc_auc']:.3f}"
         )
 
     return validation_results
