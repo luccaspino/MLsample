@@ -6,9 +6,9 @@ import typer
 from module_olist.config import INTERIM_DATA_DIR, RAW_DATA_DIR
 from module_olist.dataset import create_dataset, load_data, save_dataset
 from module_olist.features import create_features
-from module_olist.modeling.evaluate import evaluate_models
+from module_olist.modeling.evaluate import cross_validate_models, evaluate_models
 from module_olist.modeling.split import split_data
-from module_olist.modeling.train import train_models
+from module_olist.modeling.train import create_models, train_models
 
 app = typer.Typer()
 
@@ -19,6 +19,7 @@ def main(
     items_path: Path = RAW_DATA_DIR / "olist_order_items_dataset.csv",
     customers_path: Path = RAW_DATA_DIR / "olist_customers_dataset.csv",
     output_path: Path = INTERIM_DATA_DIR / "dataset.csv",
+    cv_folds: int = typer.Option(5, min=2, help="Número de folds da validação cruzada."),
 ) -> None:
     """Carrega os dados brutos, cria as junções e salva a base intermediária."""
     logger.info("Carregando dados brutos...")
@@ -34,11 +35,17 @@ def main(
     logger.info("Separando os dados em treino e teste...")
     X_train, X_test, y_train, y_test = split_data(dataset)
 
-    logger.info("Treinando os modelos...")
-    models = train_models(X_train, y_train)
+    models = create_models()
 
-    logger.info("Avaliando os modelos...")
-    evaluate_models(models, X_test, y_test)
+    logger.info(f"Executando validação cruzada estratificada com {cv_folds} folds...")
+    validation_results = cross_validate_models(models, X_train, y_train, cv_folds)
+    thresholds = {name: result["threshold"] for name, result in validation_results.items()}
+
+    logger.info("Treinando os modelos...")
+    models = train_models(X_train, y_train, models)
+
+    logger.info("Avaliando os modelos no conjunto de teste...")
+    evaluate_models(models, X_test, y_test, thresholds)
 
     logger.success(f"Pipeline concluído: {len(dataset):,} registros salvos em {output_path}")
 

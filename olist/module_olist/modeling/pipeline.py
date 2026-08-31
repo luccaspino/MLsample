@@ -64,5 +64,6 @@ def create_lightgbm_pipeline() -> Pipeline:
         learning_rate=0.1,
         max_depth=3,
         random_state=42,
+        verbosity=-1,
     )
     return Pipeline(steps=[("preprocessor", preprocessor), ("model", model)])

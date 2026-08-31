@@ -7,16 +7,21 @@ from module_olist.modeling.pipeline import (
 )
 
 
-def train_models(
-    X_train: pd.DataFrame,
-    y_train: pd.Series,
-):
-
-    models = {
+def create_models():
+    return {
         "GradientBoosting": create_gradient_boosting_pipeline(),
         "XGBoost": create_xgboost_pipeline(),
         "LightGBM": create_lightgbm_pipeline(),
     }
+
+
+def train_models(
+    X_train: pd.DataFrame,
+    y_train: pd.Series,
+    models=None,
+):
+    if models is None:
+        models = create_models()
 
     trained_models = {}
 
