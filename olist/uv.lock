@@ -1010,6 +1010,7 @@ version = "0.0.1"
 source = { editable = "." }
 dependencies = [
     { name = "ipython" },
+    { name = "joblib" },
     { name = "jupyterlab" },
     { name = "lightgbm" },
     { name = "loguru" },
@@ -1035,6 +1036,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "ipython" },
+    { name = "joblib" },
     { name = "jupyterlab" },
     { name = "lightgbm", specifier = ">=4.7.0" },
     { name = "loguru" },
