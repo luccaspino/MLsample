@@ -67,6 +67,11 @@ create_environment:
 data: requirements
 	$(PYTHON_INTERPRETER) module_olist/main.py
 
+## Train an example with active learning
+.PHONY: active-learning
+active-learning:
+	$(PYTHON_INTERPRETER) module_olist/active_learning.py
+
 
 #################################################################################
 # Self Documenting Commands                                                     #

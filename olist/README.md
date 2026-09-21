@@ -6,6 +6,14 @@
 
 brazilian ecommerce public dataset
 
+## Active learning
+
+O exemplo em `module_olist/active_learning.py` usa amostragem por incerteza:
+inicia o treinamento com poucos rotulos, consulta os casos cuja probabilidade
+esta mais proxima de 0,5 e repete o processo ate atingir o orcamento definido.
+
+Execute `make active-learning` depois de gerar o dataset refinado com `make data`.
+
 ## Project Organization
 
 ```
