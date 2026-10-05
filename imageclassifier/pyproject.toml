@@ -1,0 +1,57 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "ic"
+version = "0.0.1"
+description = "image classifier"
+authors = [
+  { name = "luccaspino" },
+]
+
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    
+]
+dependencies = [
+    "ipython",
+    "jupyterlab",
+    "loguru",
+    "matplotlib",
+    "notebook",
+    "numpy",
+    "pandas",
+    "pip",
+    "python-dotenv",
+    "ruff",
+    "scikit-learn",
+    "tensorflow",
+    "typer",
+]
+requires-python = "==3.12.13"
+
+  [project.optional-dependencies]
+  dev = [
+    "ipykernel",
+    "pytest",
+    "pytest-cov",
+  ]
+
+  [project.scripts]
+  imageclassifier = "ic.main:app"
+
+
+[tool.ruff]
+line-length = 99
+src = ["ic"]
+include = ["pyproject.toml", "ic/**/*.py"]
+
+[tool.ruff.lint]
+extend-select = ["I"]  # Add import sorting
+
+[tool.ruff.lint.isort]
+known-first-party = ["ic"]
+force-sort-within-sections = true
+
