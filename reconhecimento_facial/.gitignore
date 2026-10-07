@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.deepface/
+.validation/
+fotos/autorizados/*
+!fotos/autorizados/.gitkeep
+fotos/testes/*
+!fotos/testes/.gitkeep
+resultados/*
+!resultados/.gitkeep
