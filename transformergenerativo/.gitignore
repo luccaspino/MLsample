@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+checkpoints/*
+!checkpoints/.gitkeep
+data/raw/*
+!data/raw/.gitkeep
+data/processed/
+.gradio/

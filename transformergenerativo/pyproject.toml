@@ -1,0 +1,42 @@
+[project]
+name = "machado-gpt"
+version = "0.1.0"
+description = "Fine-tuning de um GPT-2 em português no estilo de Machado de Assis, com demo comparativa (Gradio)"
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "torch>=2.6,<2.9",
+    "transformers>=4.44",
+    "gradio>=4.44,<6",
+    "pandas>=2.0",
+    "matplotlib>=3.8",
+    "tqdm>=4.66",
+    "requests>=2.31",
+    "ipykernel>=6.29",
+    "ipywidgets>=8.1",
+]
+9
+[project.scripts]
+machado-prepare = "machado_gpt.data:main"
+machado-train = "machado_gpt.train:main"
+machado-eval = "machado_gpt.evaluate:main"
+machado-app = "machado_gpt.app:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/machado_gpt"]
+
+# --- PyTorch com CUDA (RTX 3050) ---------------------------------------------
+# Windows/Linux: baixa a build CUDA 12.6 do PyTorch. Funciona com drivers NVIDIA
+# recentes (>= 525). Se preferir CPU-only (ou estiver no macOS), apague as duas
+# seções abaixo.
+[[tool.uv.index]]
+name = "pytorch-cu126"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu126" }

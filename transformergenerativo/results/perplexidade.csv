@@ -1,0 +1,3 @@
+modelo,loss validação,ppl validação,loss teste (quincas_borba),ppl teste (quincas_borba)
+GPT-2 PT (original),4.7154,111.65,4.833,125.58
+GPT-2 PT + Machado,3.8339,46.24,4.0702,58.57
